@@ -24,13 +24,14 @@ header nav ul li a {
 }
 main {
   background: #f6f6f6;
-  display: inline-block;
+  float: left;
   width: 70%;
+  clear: both;
 }
 main section {
   padding: 30px;
 }
-main section h2 {
+main section h2, aside h2 {
   margin-bottom: 15px;
 }
 main section p {
@@ -39,6 +40,17 @@ main section p {
   line-height: 1.5em;
 }
 aside {
-  float: right;
+  float: left;
+  padding: 1em;
   width: 30%;
+}
+aside ul li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+footer {
+  background-color: aquamarine;
+  padding: 1em;
+  text-align: center;
+  clear: both;
 }
