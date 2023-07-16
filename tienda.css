@@ -2,12 +2,8 @@
   margin:0;
   padding: 0;
 }
-body {
-  background: #43862d95;
-  font-family: Arial, Helvetica, sans-serif;
-}
 header {
-  background: #eee;
+  background: #000;
   height:50px;
   width: 100%;
 }
@@ -16,40 +12,31 @@ header nav ul li {
   list-style: none;
 }
 header nav ul li a {
+  color:white;
   display: inline-block;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
   padding: 1em;
 }
 main {
-  background: #f6f6f6;
-  float: left;
-  width: 70%;
-  clear: both;
-}
-main section {
-  padding: 30px;
-}
-main section h2, aside h2 {
-  margin-bottom: 15px;
-}
-main section p {
-  margin-bottom: 15px;
-  text-align: justify;
-  line-height: 1.5em;
-}
-aside {
-  float: left;
-  padding: 1em;
-  width: 30%;
-}
-aside ul li {
-  list-style: none;
-  margin-bottom: 15px;
+  background:url(images/pizza.jpeg);
+  max-width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 90vh;
+  display: grid;
+  font-size: 3em;
+  color: white;
+  text-transform: uppercase;
+  justify-content: center;
+  align-content: center;
 }
 footer {
-  background-color: aquamarine;
+  background-color: #000;
+  color: white;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
   padding: 1em;
   text-align: center;
   clear: both;
