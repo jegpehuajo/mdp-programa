@@ -1,0 +1,16 @@
+form {
+  background-color: grey;
+  padding: 2em;
+  margin: 0 auto;
+  width: 50%;
+}
+label {
+  display: block;
+}
+input[type="submit"] {
+  background-color: green;
+  color: white;
+  padding: .5em;
+  margin-top: 1em;
+  width: 100%;
+}
