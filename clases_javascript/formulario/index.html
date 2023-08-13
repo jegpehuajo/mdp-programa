@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="row m-2">
+    <div class="col-6">
+      <h3>Registro de personas</h3>
+    <form action="" id="person">
+      <div id="mb-3">
+        <label for="dni" class="form-label">DNI</label>
+        <input type="number" placeholder="Ingrese solo numeros" class="form-control" id="dni">
+      </div>
+      <div id="mb-3">
+        <label for="firstName" class="form-label">Nombre</label>
+        <input type="text" placeholder="Ingrese su nombre" class="form-control" id="firstName">
+      </div>
+      <div id="mb-3">
+        <label for="lastName" class="form-label">Apellido</label>
+        <input type="text" placeholder="Ingrese su apellido" class="form-control" id="lastName">
+      </div>
+      <div id="mb-3">
+        <label for="birthday" class="form-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" id="birthday">
+      </div>
+      <div id="mb-3">
+        <label for="address" class="form-label">Dirección</label>
+        <input type="text" placeholder="Ingrese su dirección" class="form-control" id="address">
+      </div>
+      <div id="mb-3">
+        <label for="status" class="form-label">status</label>
+        <select class="form-control" id="status">
+          <option value="0">Inactivo</option>
+          <option value="1">En Proceso</option>
+          <option value="2">Concluido</option>
+          <option value="3">Activo</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-dark mt-2" onclick="addFormPerson()">Agregar</button>
+    </form>
+    </div>
+    <div class="col-6">
+      <h3>Resultados</h3>
+    </div>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
