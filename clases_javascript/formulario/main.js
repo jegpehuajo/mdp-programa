@@ -26,4 +26,18 @@ const addFormPerson = () => {
 
   addDataPerson(firstName.value, lastName.value, birthday.value, address.value, status.value);
   console.log(dataPerson);
+  document.getElementById("person").reset();
+  dni.focus();
+}
+
+const showDataPerson = () => {
+  let listTable = '';
+  dataPerson.forEach((person) => {
+    listTable += `<tr>
+      <td>${person.dni}</td>
+      <td>${person.firstName} ${person.lastName}</td>
+      <td>${person.birthday}</td>
+      <td>${person.address}</td>
+    </tr>`;
+  });
 }

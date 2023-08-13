@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="row m-2">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <h3>Registro de personas</h3>
     <form action="" id="person">
       <div id="mb-3">
@@ -43,8 +43,20 @@
       <button type="button" class="btn btn-dark mt-2" onclick="addFormPerson()">Agregar</button>
     </form>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <h3>Resultados</h3>
+      <table class="table table-striped table-bordered table-responsive">
+        <thead>
+          <th>DNI</th>
+          <th>Nombres y Apellidos</th>
+          <th>Edad</th>
+          <th>Dirección</th>
+          <th>Estatus</th>
+        </thead>
+        <tbody id="listPerson">
+
+        </tbody>
+      </table>
     </div>
   </div>
 
