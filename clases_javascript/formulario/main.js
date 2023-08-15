@@ -24,20 +24,34 @@ const addFormPerson = () => {
   const address = document.getElementById("address");
   const status = document.getElementById("status");
 
-  addDataPerson(firstName.value, lastName.value, birthday.value, address.value, status.value);
+  addDataPerson(firstName.value, lastName.value, birthday.value,status.value, address.value,dni.value);
+
   console.log(dataPerson);
   document.getElementById("person").reset();
   dni.focus();
+  showDataPerson();
 }
 
 const showDataPerson = () => {
   let listTable = '';
   dataPerson.forEach((person) => {
+    let status = returnStatusPerson(parseInt(person.status));
     listTable += `<tr>
       <td>${person.dni}</td>
       <td>${person.firstName} ${person.lastName}</td>
       <td>${person.birthday}</td>
       <td>${person.address}</td>
+      <td>${status}</td>
     </tr>`;
   });
+  document.getElementById("listPerson").innerHTML = listTable;
+}
+
+const returnStatusPerson = (status) => {
+  switch(status) {
+    case 0: return 'Inactivo'; break;
+    case 1: return 'En Proceso'; break;
+    case 2: return 'Concluido'; break;
+    default: return 'Activo'; break;
+  }
 }
