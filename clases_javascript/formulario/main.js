@@ -1,4 +1,5 @@
 let dataPerson = [];
+let showAlertError = document.getElementById("showAlertError");
 
 const addDataPerson = (firstName, lastName, birthday, status, address, dni, action=true) => {
   let person = {
@@ -24,12 +25,22 @@ const addFormPerson = () => {
   const address = document.getElementById("address");
   const status = document.getElementById("status");
 
-  addDataPerson(firstName.value, lastName.value, birthday.value,status.value, address.value,dni.value);
+  if (validateForm(firstName.value) && validateForm(lastName.value) && validateForm(birthday.value) && validateForm(status.value) 
+    && validateForm(address.value) && validateForm(dni.value)) {
+    addDataPerson(firstName.value, lastName.value, birthday.value,status.value, address.value,dni.value);
 
-  console.log(dataPerson);
-  document.getElementById("person").reset();
-  dni.focus();
-  showDataPerson(dataPerson);
+    console.log(dataPerson);
+    document.getElementById("person").reset();
+    dni.focus();
+    showDataPerson(dataPerson);
+    messageAlert(0, "<strong>Se guardo correctamente.</strong>");
+    toogleAlert(2000);
+    } else {
+      //showAlertError.classList.remove('d-none');
+      //showAlertError.innerHTML = `<strong>No dejar campos vacios!</strong>`;
+      messageAlert(1,"<strong>No dejar campos vacios!</strong>");
+      toogleAlert(2000);
+    }
 }
 
 const showDataPerson = (arrayDataPerson) => {
@@ -79,3 +90,31 @@ const dataFilterPerson = (words) => {
   });
   return resultFilter;
 }
+
+const validateForm = (validar) => {
+  validar = validar.trim();
+  return validar.length > 0 ? true : false;
+}
+
+const toogleAlert = (time) => {
+  setTimeout(() => {
+    showAlertError.classList.add('d-none');
+  }, time)
+  
+}
+
+const messageAlert = (type, message) => {
+  'alert-danger alert-success alert-info alert-warning'
+  showAlertError.removeAttribute('class');
+  switch(type) {
+    case 1:
+      showAlertError.classList.add('alert-danger','alert');
+    break;
+    default:
+      showAlertError.classList.add('alert-success', 'alert');
+    break;
+  }
+  showAlertError.innerHTML = message;
+}
+
+toogleAlert(0);
