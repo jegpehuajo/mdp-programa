@@ -27,19 +27,24 @@ const addFormPerson = () => {
 
   if (validateForm(firstName.value) && validateForm(lastName.value) && validateForm(birthday.value) && validateForm(status.value) 
     && validateForm(address.value) && validateForm(dni.value)) {
-    addDataPerson(firstName.value, lastName.value, birthday.value,status.value, address.value,dni.value);
-
-    console.log(dataPerson);
-    document.getElementById("person").reset();
-    dni.focus();
-    showDataPerson(dataPerson);
-    messageAlert(0, "<strong>Se guardo correctamente.</strong>");
-    toogleAlert(2000);
-    } else {
-      //showAlertError.classList.remove('d-none');
-      //showAlertError.innerHTML = `<strong>No dejar campos vacios!</strong>`;
-      messageAlert(1,"<strong>No dejar campos vacios!</strong>");
+    if (filterDniOne(dni.value) == -1 ) {
+      addDataPerson(firstName.value, lastName.value, birthday.value,status.value, address.value,dni.value);
+      console.log(dataPerson);
+      document.getElementById("person").reset();
+      dni.focus();
+      showDataPerson(dataPerson);
+      messageAlert(0, "<strong>Se guardo correctamente.</strong>");
       toogleAlert(2000);
+    } else {
+      dni.focus();
+      messageAlert(1,"<strong>El DNI esta repetido</strong>");
+      toogleAlert(2000);
+    }
+  } else {
+    //showAlertError.classList.remove('d-none');
+    //showAlertError.innerHTML = `<strong>No dejar campos vacios!</strong>`;
+    messageAlert(1,"<strong>No dejar campos vacios!</strong>");
+    toogleAlert(2000);
     }
 }
 
@@ -115,6 +120,12 @@ const messageAlert = (type, message) => {
     break;
   }
   showAlertError.innerHTML = message;
+}
+
+const filterDniOne = (dni) => {
+  return dataPerson.findIndex((person) => {
+    return person.dni == parseInt(dni);
+  })
 }
 
 toogleAlert(0);
