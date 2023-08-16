@@ -59,10 +59,14 @@ const showDataPerson = (arrayDataPerson) => {
         <td>${person.birthday}</td>
         <td>${person.address}</td>
         <td>${status}</td>
+        <td>
+          <button type="button" class="btn btn-danger">Eliminar</button>
+          <button type="button" class="btn btn-secondary">Editar</button>
+        </td>
       </tr>`;
   });
 }else {
-  listTable += `<tr><td colspan="5" class="text-center">No se encuentran registros</td></tr>`;
+  listTable += `<tr><td colspan="6" class="text-center">No se encuentran registros</td></tr>`;
 }
   document.getElementById("listPerson").innerHTML = listTable;
 }
@@ -126,6 +130,11 @@ const filterDniOne = (dni) => {
   return dataPerson.findIndex((person) => {
     return person.dni == parseInt(dni);
   })
+}
+
+const deletePerson = (position) => {
+  dataPerson.splice(position,1);
+  showDataPerson(dataPerson);
 }
 
 toogleAlert(0);
