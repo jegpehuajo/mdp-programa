@@ -60,8 +60,8 @@ const showDataPerson = (arrayDataPerson) => {
         <td>${person.address}</td>
         <td>${status}</td>
         <td>
-          <button type="button" class="btn btn-danger">Eliminar</button>
-          <button type="button" class="btn btn-secondary">Editar</button>
+          <button type="button" class="btn btn-danger" onclick="deletePerson(${person.dni});">Eliminar</button>
+          <button type="button" class="btn btn-warning" onclick="editPerson(${person.dni});">Editar</button>
         </td>
       </tr>`;
   });
@@ -129,12 +129,20 @@ const messageAlert = (type, message) => {
 const filterDniOne = (dni) => {
   return dataPerson.findIndex((person) => {
     return person.dni == parseInt(dni);
-  })
+  });
 }
 
-const deletePerson = (position) => {
+const deletePerson = (dni) => {
+  let position = filterDniOne(dni);
   dataPerson.splice(position,1);
   showDataPerson(dataPerson);
+  searchFilter();
+}
+
+const editPerson = (dni) => {
+  let position = filterDniOne(dni);
+  let person = dataPerson[position];
+  console.log(person);
 }
 
 toogleAlert(0);
