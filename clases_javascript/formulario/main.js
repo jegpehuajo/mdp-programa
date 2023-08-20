@@ -137,12 +137,36 @@ const deletePerson = (dni) => {
   dataPerson.splice(position,1);
   showDataPerson(dataPerson);
   searchFilter();
+  showHiddenBtn();
 }
 
 const editPerson = (dni) => {
   let position = filterDniOne(dni);
   let person = dataPerson[position];
-  console.log(person);
+  
+  let dniInput = document.getElementById("dni");
+  let firstName = document.querySelector("#firstName");
+  let lastName = document.getElementById("lastName");
+  let birthday = document.getElementById("birthday");
+  let address = document.getElementById("address");
+
+  dniInput.value = person.dni;
+  dniInput.disabled = true;
+  firstName.value = person.firstName;
+  lastName.value = person.lastName;
+  birthday.value = person.birthday;
+  address.value = person.address;
+}
+
+const showHiddenBtn = (active=false) => {
+  if(active) {
+    btnAdd.classList.add('d-none');
+    btnUpdate.classList.remove('d-none');
+  } else {
+    btnAdd.classList.remove('d-none');
+    btnUpdate.classList.add('d-none');
+    document.getElementById("person").reset();
+  }
 }
 
 toogleAlert(0);
