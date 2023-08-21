@@ -1,5 +1,8 @@
 let dataPerson = [];
 let showAlertError = document.getElementById("showAlertError");
+let editDniPosition = -1;
+let btnAdd = document.getElementById("btnAdd");
+let btnUpdate = document.getElementById("btnUpdate");
 
 const addDataPerson = (firstName, lastName, birthday, status, address, dni, action=true) => {
   let person = {
@@ -138,6 +141,7 @@ const deletePerson = (dni) => {
   showDataPerson(dataPerson);
   searchFilter();
   showHiddenBtn();
+  storageDataPerson();
 }
 
 const editPerson = (dni) => {
@@ -151,11 +155,42 @@ const editPerson = (dni) => {
   let address = document.getElementById("address");
 
   dniInput.value = person.dni;
-  dniInput.disabled = true;
+  //dniInput.disabled = true;
   firstName.value = person.firstName;
   lastName.value = person.lastName;
   birthday.value = person.birthday;
   address.value = person.address;
+  editDniPosition = position;
+}
+
+const editFormPerson = () => {
+  editDniPosition;
+  let dni = document.getElementById("dni");
+  let firstName = document.querySelector("#firstName");
+  let lastName = document.querySelector("#lastName");
+  let birthday = document.getElementById("birthday");
+  let address = document.getElementById("address");
+  let status = document.getElementById("status");
+
+  if(validateForm(firstName.value) && validateForm(lastName.value) && validateForm(birthday.value) && validateForm(status.value) 
+  && validateForm(address.value) && validateForm(dni.value)) {
+    if(filterDniOne(dni.value) == -1 || filterDniOne(dni.value) == editDniPosition) {
+      dataPerson[editDniPosition].firstName = firstName.value;
+      dataPerson[editDniPosition].lastName = lastName.value;
+      dataPerson[editDniPosition].dni = dni.value;
+      dataPerson[editDniPosition].address = address.value;
+      dataPerson[editDniPosition].status = status.dni;
+      dataPerson[editDniPosition].birthday = birthday.value;
+      showHiddenBtn();
+      showDataPerson(dataPerson);
+      storageDataPerson();
+    } else {
+      dni.focus();
+      messageAlert(2,"<strong>DNI Repetido.</strong>")
+    }
+  } else {
+    messageAlert(1, "<strong>No dejar campos vacios.</strong>")
+  }
 }
 
 const showHiddenBtn = (active=false) => {
@@ -170,3 +205,19 @@ const showHiddenBtn = (active=false) => {
 }
 
 toogleAlert(0);
+
+const storageDataPerson = () => {
+  let arrayPerson = JSON.stringify(dataPerson);
+  localStorage.setItem("person", arrayPerson);
+}
+
+const getStorageDataPerson = () => {
+  if(localStorage.getItem("person") != null ) {
+    let arrayPerson = localStorage.getItem("person");
+    arrayPerson = JSON.parse(arrayPerson);
+    dataPerson = arrayPerson;
+    showDataPerson(dataPerson);
+  }
+}
+
+getStorageDataPerson();
