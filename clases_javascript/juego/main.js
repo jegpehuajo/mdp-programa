@@ -2,6 +2,8 @@
 //Opciones [piedra, papel, tijera]
 var opciones = ["piedra.png", "papel.png", "tijera.png"];
 let countJuego = 0;
+let userJuego;
+let maquinaJuego;
 
 let inicial = document.querySelector("#inicial");
 
@@ -12,13 +14,14 @@ const juegoInicial = (minimo, maximo) => {
 }
 
 const juegoMaquina = () => {
-  countJuego = 1;
-  let number =  juegoInicial(0,2);
+  countJuego += 1;
+  document.getElementById("cantidad").innerHTML = countJuego;
+  let maquinaJuego =  juegoInicial(0,2);
   let init = document.querySelector("#init");
-  let imagen = `<img class="img-150" src="${opciones[number]}" />`;
+  let imagen = `<img class="img-150" src="${opciones[maquinaJuego]}" />`;
   
   let createDiv = document.createElement("div");
-  createDiv.classList.add("row","bg-light","text-white", "p-2");
+  createDiv.classList.add("row","bg-light", "p-2");
 
   createDiv.innerHTML = `
     <div class="col-4">${imagen}</div>
@@ -30,10 +33,23 @@ const juegoMaquina = () => {
 }
 
 const juegoUser = (id) => {
-  let number = juegoInicial(0,2);
-  let imagen = `<img class="img-150" src="${opciones[number]}" />`;
+  userJuego = juegoInicial(0,2);
+  let imagen = `<img class="img-150" src="${opciones[userJuego]}" />`;
   let divUser = document.querySelector("#user_"+id);
   divUser.innerHTML = imagen;
 
+  let result = document.querySelector("#result_"+id);
+  result.innerHTML = validateJuego(userJuego,maquinaJuego);
   inicial.classList.remove("d-none");
+}
+
+const validateJuego = (user,maquina) => {
+  //0: Piedra, 1: Papel, 2: Tijera.
+  if(user == maquina) {
+    return "Empate";
+  }else if((user== 0 && maquina== 2) || (user== 1 && maquina== 0) || (user== 2 && maquina== 1)){
+    return "Gana usuario";
+  }else {
+    return "Gana Maquina.";
+  }
 }
