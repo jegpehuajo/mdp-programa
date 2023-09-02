@@ -18,7 +18,7 @@ const allProducts = async () => {
 
 const cardProduct = (products) => {
   return `
-  <div class="card col-3">
+  <div class="card col-3 mt-3 p-0">
   <img src="${products.thumbnail}" alt="${products.title}">
   <div class="card-body">
     <h5 class="card-title">
@@ -31,6 +31,20 @@ const cardProduct = (products) => {
   <a href="">Ver producto</a>
 </div>
   `;
+}
+
+const filtrar = async () => {
+  buscar = document.getElementById("filter").value;
+
+  if (buscar.trim().length > 2) {
+    const response = await fetch(url+"products/search?q="+buscar);
+    const data = await response.json();
+    console.log(data);
+    document.querySelector("#allProducts").innerHTML = "";
+    data.products.forEach(element => {
+      document.querySelector("#allProducts").innerHTML += cardProduct(element);
+    });
+  }
 }
 
 allProducts();
