@@ -28,7 +28,7 @@ const cardProduct = (products) => {
       ${products.description}
     </p>
   </div>
-  <a href="">Ver producto</a>
+  <button type="button" onclick="oneProduct(${products.id})">Ver producto</a>
 </div>
   `;
 }
@@ -45,6 +45,10 @@ const filtrar = async () => {
       document.querySelector("#allProducts").innerHTML += cardProduct(element);
     });
   }
+}
+
+const oneProduct = (id) => {
+  console.log(id);
 }
 
 allProducts();
